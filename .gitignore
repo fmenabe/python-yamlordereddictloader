@@ -1,0 +1,10 @@
+# byte-compiled python files.
+*.pyc
+
+# Vim temporary files.
+*.swp
+
+# Build files and directories.
+build
+dist
+MANIFEST
