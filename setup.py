@@ -2,9 +2,13 @@
 import sys
 from distutils.core import setup
 
+requires = ['pyyaml']
+if float('%d.%d' % sys.version_info[:2]) < 2.7:
+    requires.append('ordereddict')
+
 setup(
     name='yamlordereddictloader',
-    version='0.1.0',
+    version='0.1.1',
     author='François Ménabé',
     author_email='francois.menabe@gmail.com',
     url='https://github.com/fmenabe/python-yamlordereddictloader',
@@ -23,4 +27,4 @@ setup(
                  'Programming Language :: Python :: 3',
                  'Topic :: Utilities'],
     py_modules=['yamlordereddictloader'],
-    install_requires=['pyyaml'])
+    install_requires=requires)

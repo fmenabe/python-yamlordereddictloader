@@ -4,7 +4,11 @@
 """
 
 import yaml
-from collections import OrderedDict
+import sys
+if float('%d.%d' % sys.version_info[:2]) < 2.7:
+    from ordereddict import OrderedDict
+else:
+    from collections import OrderedDict
 
 class Loader(yaml.Loader):
     def __init__(self, *args, **kwargs):
