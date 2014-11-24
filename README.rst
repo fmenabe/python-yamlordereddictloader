@@ -13,7 +13,7 @@ To install it
 
 .. code-block:: bash
 
-    $ pip install yamlordereddictload
+    $ pip install yamlordereddictloader
 
 To use it
 ---------
