@@ -10,6 +10,7 @@ if float('%d.%d' % sys.version_info[:2]) < 2.7:
 else:
     from collections import OrderedDict
 
+
 class Loader(yaml.Loader):
     def __init__(self, *args, **kwargs):
         yaml.Loader.__init__(self, *args, **kwargs)
@@ -18,21 +19,21 @@ class Loader(yaml.Loader):
         self.add_constructor(
             'tag:yaml.org,2002:omap', type(self).construct_yaml_map)
 
-
     def construct_yaml_map(self, node):
         data = OrderedDict()
         yield data
         value = self.construct_mapping(node)
         data.update(value)
 
-
     def construct_mapping(self, node, deep=False):
         if isinstance(node, yaml.MappingNode):
             self.flatten_mapping(node)
         else:
-            raise yaml.constructor.ConstructError(None, None,
-                'expected a mapping node, but found %s' % node.id,
-                node.start_mark)
+            msg = 'expected a mapping node, but found %s' % node.id
+            raise yaml.constructor.ConstructError(None,
+                                                  None,
+                                                  msg,
+                                                  node.start_mark)
 
         mapping = OrderedDict()
         for key_node, value_node in node.value:
