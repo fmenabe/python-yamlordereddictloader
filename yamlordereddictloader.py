@@ -47,3 +47,12 @@ class Loader(yaml.Loader):
             value = self.construct_object(value_node, deep=deep)
             mapping[key] = value
         return mapping
+
+
+class Dumper(yaml.Dumper):
+    def __init__(self, *args, **kwargs):
+        yaml.Dumper.__init__(self, *args, **kwargs)
+        self.add_representer(OrderedDict, type(self).represent_ordereddict)
+
+    def represent_ordereddict(self, data):
+        return self.represent_mapping('tag:yaml.org,2002:map', data.items())
