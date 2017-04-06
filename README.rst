@@ -1,12 +1,38 @@
-This is a loader for PyYAML allowing to keep items order when loading a file. In
-some rare cases, it may be desired to keep the order of items when loading the
-YAML file. For example, this is the case of the ``clg`` module
-(https://pypi.python.org/pypi/clg) that generate a command-line from a
-dictionnary. When a YAML file is used, and in a purely esthetic purpose, it
-could be nice to keep order of the items.
+python-yamlordereddictloader
+============================
 
-The loader is based on stackoverflow topic:
-http://stackoverflow.com/questions/5121931/in-python-how-can-you-load-yaml-mappings-as-ordereddicts
+.. image:: https://img.shields.io/pypi/l/yamlordereddictloader.svg
+           :target: https://opensource.org/licenses/MIT
+           :alt: License
+
+.. image:: https://img.shields.io/pypi/pyversions/yamlordereddictloader.svg
+           :target: https://pypi.python.org/pypi/yamlordereddictloader
+           :alt: Versions
+
+.. image:: https://img.shields.io/pypi/v/yamlordereddictloader.svg
+           :target: https://pypi.python.org/pypi/yamlordereddictloader
+           :alt: PyPi
+
+.. image:: https://img.shields.io/badge/github-repo-yellow.jpg
+           :target: https://github.com/fmenabe/python-yamlordereddictloader
+           :alt: Code repo
+
+.. image:: https://landscape.io/github/fmenabe/python-yamlordereddictloader/master/landscape.svg?style=flat
+           :target: https://landscape.io/github/fmenabe/python-yamlordereddictloader/master
+           :alt: Code Health
+
+
+This module provide a loader and a dumper for PyYAML allowing to keep items order
+when loading a file (by putting them in ``OrderedDict``) and to manage ``OrderedDict``
+objects when dumping to a file.
+
+The loader is based on stackoverflow topic (thanks to Eric Naeseth):
+http://stackoverflow.com/questions/5121931/in-python-how-can-you-load-yaml-mappings-as-ordereddicts#answer-5121963
+
+Self promotion: I use it a lot with `clg <https://clg.readthedocs.io>`_ which allows to
+generate command-line definition from a configuration file for keeping order of
+subcommands, options and arguments in the help.
+
 
 To install it
 -------------
@@ -15,12 +41,31 @@ To install it
 
     $ pip install yamlordereddictloader
 
-To use it
----------
+To use the Loader
+-----------------
 
 .. code-block:: python
 
     import yaml
     import yamlordereddictloader
 
-    datas = yaml.load(open('myfile.yml'), Loader=yamlordereddictloader.Loader)
+    data = yaml.load(open('myfile.yml'), Loader=yamlordereddictloader.Loader)
+
+To use the Dumper
+-----------------
+
+.. code-block:: python
+
+    import yaml
+    import yamlordereddictloader
+    from collections import OrderedDict
+
+    data = OrderedDict([
+        ('key1', 'val1'),
+        ('key2', OrderedDict([('key21', 'val21'), ('key22', 'val22')]))
+    ])
+    yaml.dump(
+        data,
+        open('myfile.yml', 'w'),
+        Dumper=yamlordereddictloader.Dumper,
+        default_flow_style=False)
