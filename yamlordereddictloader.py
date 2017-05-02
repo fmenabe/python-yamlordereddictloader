@@ -49,10 +49,19 @@ class Loader(yaml.Loader):
         return mapping
 
 
+def represent_ordereddict(self, data):
+    return self.represent_mapping('tag:yaml.org,2002:map', data.items())
+
 class Dumper(yaml.Dumper):
     def __init__(self, *args, **kwargs):
         yaml.Dumper.__init__(self, *args, **kwargs)
         self.add_representer(OrderedDict, type(self).represent_ordereddict)
 
-    def represent_ordereddict(self, data):
-        return self.represent_mapping('tag:yaml.org,2002:map', data.items())
+    represent_ordereddict = represent_ordereddict
+
+class SafeDumper(yaml.Dumper):
+    def __init__(self, *args, **kwargs):
+        yaml.SafeDumper.__init__(self, *args, **kwargs)
+        self.add_representer(OrderedDict, type(self).represent_ordereddict)
+
+    represent_ordereddict = represent_ordereddict
