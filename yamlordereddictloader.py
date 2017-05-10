@@ -59,7 +59,7 @@ class Dumper(yaml.Dumper):
 
     represent_ordereddict = represent_ordereddict
 
-class SafeDumper(yaml.Dumper):
+class SafeDumper(yaml.SafeDumper):
     def __init__(self, *args, **kwargs):
         yaml.SafeDumper.__init__(self, *args, **kwargs)
         self.add_representer(OrderedDict, type(self).represent_ordereddict)
