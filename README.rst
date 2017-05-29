@@ -23,15 +23,15 @@ python-yamlordereddictloader
 
 
 This module provide a loader and a dumper for PyYAML allowing to keep items order
-when loading a file (by putting them in ``OrderedDict``) and to manage ``OrderedDict``
-objects when dumping to a file.
+when loading a file (by putting them in ``OrderedDict`` objects) and to manage
+``OrderedDict`` objects when dumping to a file.
 
 The loader is based on stackoverflow topic (thanks to Eric Naeseth):
 http://stackoverflow.com/questions/5121931/in-python-how-can-you-load-yaml-mappings-as-ordereddicts#answer-5121963
 
-Self promotion: I use it a lot with `clg <https://clg.readthedocs.io>`_ which allows to
-generate command-line definition from a configuration file for keeping order of
-subcommands, options and arguments in the help.
+Self promotion: I use it a lot with `clg <https://clg.readthedocs.io>`_, which
+allows to generate command-line definition from a configuration file, for keeping
+order of subcommands, options and arguments in the help message.
 
 
 To install it
@@ -41,8 +41,8 @@ To install it
 
     $ pip install yamlordereddictloader
 
-To use the Loader
------------------
+Loader usage
+------------
 
 .. code-block:: python
 
@@ -51,8 +51,8 @@ To use the Loader
 
     data = yaml.load(open('myfile.yml'), Loader=yamlordereddictloader.Loader)
 
-To use the Dumper
------------------
+Dumper usage
+------------
 
 .. code-block:: python
 
@@ -69,3 +69,7 @@ To use the Dumper
         open('myfile.yml', 'w'),
         Dumper=yamlordereddictloader.Dumper,
         default_flow_style=False)
+
+**Note:** For using the safe dumper (which producing standard YAML tags and does
+not represent arbitrary Python objects), replace `yamlorderdictloader.Dumper` by
+`yamlorderedictloader.SafeDumper`.
