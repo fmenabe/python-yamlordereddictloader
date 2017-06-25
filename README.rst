@@ -31,7 +31,7 @@ http://stackoverflow.com/questions/5121931/in-python-how-can-you-load-yaml-mappi
 
 Self promotion: I use it a lot with `clg <https://clg.readthedocs.io>`_, which
 allows to generate command-line definition from a configuration file, for keeping
-order of subcommands, options and arguments in the help message.
+order of subcommands, options and arguments in the help message!
 
 
 To install it
@@ -50,6 +50,10 @@ Loader usage
     import yamlordereddictloader
 
     data = yaml.load(open('myfile.yml'), Loader=yamlordereddictloader.Loader)
+
+**Note:** For using the safe loader (which want standard YAML tags and does
+not construct arbitrary Python objects), replace ``yamlorderdictloader.Loader`` by
+``yamlorderedictloader.SafeLoader``.
 
 Dumper usage
 ------------
@@ -70,6 +74,6 @@ Dumper usage
         Dumper=yamlordereddictloader.Dumper,
         default_flow_style=False)
 
-**Note:** For using the safe dumper (which producing standard YAML tags and does
-not represent arbitrary Python objects), replace `yamlorderdictloader.Dumper` by
-`yamlorderedictloader.SafeDumper`.
+**Note:** For using the safe dumper (which produce standard YAML tags and does
+not represent arbitrary Python objects), replace ``yamlorderdictloader.Dumper`` by
+``yamlorderedictloader.SafeDumper``.
