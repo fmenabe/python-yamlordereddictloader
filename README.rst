@@ -1,6 +1,11 @@
 python-yamlordereddictloader
 ============================
 
+**LEGACY: the** `Phynix/yamlloader <https://github.com/Phynix/yamlloader>`_ **project
+provide an improved version of this library with unit tests, performance improvements
+(by providing access to the C implementation of PyYAML) and is more actively developed.
+You should use it!**
+
 .. image:: https://img.shields.io/pypi/l/yamlordereddictloader.svg
            :target: https://opensource.org/licenses/MIT
            :alt: License
@@ -20,7 +25,6 @@ python-yamlordereddictloader
 .. image:: https://landscape.io/github/fmenabe/python-yamlordereddictloader/master/landscape.svg?style=flat
            :target: https://landscape.io/github/fmenabe/python-yamlordereddictloader/master
            :alt: Code Health
-
 
 This module provide a loader and a dumper for PyYAML allowing to keep items order
 when loading a file (by putting them in ``OrderedDict`` objects) and to manage
