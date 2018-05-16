@@ -1,7 +1,7 @@
 python-yamlordereddictloader
 ============================
 
-**LEGACY: the** `Phynix/yamlloader <https://github.com/Phynix/yamlloader>`_ **project
+**DEPRECATED: the** `Phynix/yamlloader <https://github.com/Phynix/yamlloader>`_ **project
 provide an improved version of this library with unit tests, performance improvements
 (by providing access to the C implementation of PyYAML) and is more actively developed.
 You should use it!**
