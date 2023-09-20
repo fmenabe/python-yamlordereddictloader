@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from distutils.core import setup
+from setuptools import setup
 
 requires = ['pyyaml']
 if float('%d.%d' % sys.version_info[:2]) < 2.7:
