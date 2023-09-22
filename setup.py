@@ -9,7 +9,7 @@ if float('%d.%d' % sys.version_info[:2]) < 2.7:
 
 setup(
     name='yamlordereddictloader',
-    version='0.4.1',
+    version='0.4.2',
     author='François Ménabé',
     author_email='francois.menabe@gmail.com',
     url='https://github.com/fmenabe/python-yamlordereddictloader',
